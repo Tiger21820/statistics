@@ -301,3 +301,4 @@ class prune_statistics extends \phpbb\cron\task\base
 		return $this->config['statistics_last_gc'] < time() - $this->config['statistics_gc']; //) && (date('Y-m-d', time()) != date('Y-m-d', $this->config['prune_statistics_last_gc']));
 	}
 }
+1
