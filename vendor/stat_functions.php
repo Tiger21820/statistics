@@ -167,7 +167,7 @@ class stat_functions
 			$template->assign_block_vars('onlinerow', array(
 				'COUNTER'   => $start + $counter,
 				'TIJD'		=> $user->format_date($row['time'], 'H:i'),
-				'DATE'		=> $user->format_date($row['time'], 'D M d, Y'),
+				'DATE'		=> $user->format_date($row['time'], 'M D d, Y'),
 				'FLAG'		=> ($row['uname'] != 'Anonymous') ? 'online-user.gif' : 'offline-user.gif',
 				'UNAME'		=> $row['uname'],
 				'UGROUP'	=> $group_name,
@@ -209,8 +209,8 @@ class stat_functions
 		$db->sql_freeresult($result);
 
 		$template->assign_vars(array('OVERALLTXT'	=> ($overall) ? 'Today' : 'Overall',
-									'MINMAXDATE'	=> ($overall && $total_entries) ? '(' .$user->format_date($row['firstdate'], 'd m \'y') . ' - ' .
-														$user->format_date($row['lastdate'], 'd m \'y') . ')': '',
+									'MINMAXDATE'	=> ($overall && $total_entries) ? '(' .$user->format_date($row['firstdate'], 'm d \'y') . ' - ' .
+														$user->format_date($row['lastdate'], 'm d \'y') . ')': '',
 									'OVERALLSORT'	=> ($overall) ? '&amp;overall=1' : ''));
 
 		$sql = ($overall) ? 'SELECT o.name, o.hits AS total_per_domain, 
@@ -312,8 +312,8 @@ class stat_functions
 		$db->sql_freeresult($result);
 
 		$template->assign_vars(array('OVERALLTXT'	=> ($overall) ? 'Today' : 'Overall',
-									'MINMAXDATE'	=> ($overall && $total_entries) ? '(' .$user->format_date($row['firstdate'], 'd m \'y') . ' - ' .
-														$user->format_date($row['lastdate'], 'd m \'y') . ')': '',
+									'MINMAXDATE'	=> ($overall && $total_entries) ? '(' .$user->format_date($row['firstdate'], 'm d \'y') . ' - ' .
+														$user->format_date($row['lastdate'], 'm d \'y') . ')': '',
 									'OVERALLSORT'	=> ($overall) ? '&amp;overall=1' : ''));
 
 		$sql = ($overall) ? 'SELECT o.name, o.hits AS total_per_os,
@@ -422,8 +422,8 @@ class stat_functions
 		$template->assign_vars(array('ROWSPAN'		=> $total_entries,
 									'OVERALL'		=> ($overall) ? str_replace('&amp;overall=1', '&amp;overall=0',$base_url) : $base_url.'&amp;overall=1',
 									'OVERALLTXT'	=> ($overall) ? 'Today' : 'Overall',
-									'MINMAXDATE'	=> ($overall && $total_entries) ? '(' .$user->format_date($row['firstdate'], 'd m \'y') . ' - ' .
-														$user->format_date($row['lastdate'], 'd m \'y') . ')': '',
+									'MINMAXDATE'	=> ($overall && $total_entries) ? '(' .$user->format_date($row['firstdate'], 'm d \'y') . ' - ' .
+														$user->format_date($row['lastdate'], 'm d \'y') . ')': '',
 									'OVERALLSORT'	=> ($overall) ? '&amp;overall=1' : ''));
 
 		$sql = ($overall) ? 'SELECT d.description, o.hits AS total_per_domain,
@@ -491,12 +491,12 @@ class stat_functions
 		$template->assign_vars(array('ROWSPAN' 		=> $total_entries,
 									'OVERALL'		=> ($overall) ? str_replace('&amp;overall=1', '&amp;overall=0',$base_url) : $base_url.'&amp;overall=1',
 									'OVERALLTXT'	=> ($overall) ? 'Today' : 'Overall',
-									'MINMAXDATE'	=> ($overall && $total_entries) ? '(' .$user->format_date($row['firstdate'], 'd m \'y') . ' - ' .
-														$user->format_date($row['lastdate'], 'd m \'y') . ')': '',
+									'MINMAXDATE'	=> ($overall && $total_entries) ? '(' .$user->format_date($row['firstdate'], 'm d \'y') . ' - ' .
+														$user->format_date($row['lastdate'], 'm d \'y') . ')': '',
 									'OVERALLSORT'	=> ($overall) ? '&amp;overall=1' : ''));
 
 		$sql = ($overall) ? 'SELECT name AS domain, hits AS total_per_referer,
-				(SELECT SUM(hits) FROM ' . $tables['archive'] . ' WHERE cat = 7 <> "") as total,
+				(SELECT SUM(hits) FROM ' . $tables['archive'] . ' WHERE cat = 7) as total,
 				SUM(hits) / (SELECT SUM(hits) FROM ' . $tables['archive'] . ' WHERE cat = 7) AS percent
 				FROM ' . $tables['archive'] . ' o WHERE cat = 7
 				GROUP BY name ORDER BY ' . $sql_sort :
@@ -558,8 +558,8 @@ class stat_functions
 		$template->assign_vars(array('ROWSPAN' 		=> $total_entries,
 									'OVERALL'		=> ($overall) ? str_replace('&amp;overall=1', '&amp;overall=0',$base_url) : $base_url.'&amp;overall=1',
 									'OVERALLTXT'	=> ($overall) ? 'Today' : 'Overall',
-									'MINMAXDATE'	=> ($overall && $total_entries) ? '(' .$user->format_date($row['firstdate'], 'd m \'y') . ' - ' .
-														$user->format_date($row['lastdate'], 'd m \'y') . ')': '',
+									'MINMAXDATE'	=> ($overall && $total_entries) ? '(' .$user->format_date($row['firstdate'], 'm d \'y') . ' - ' .
+														$user->format_date($row['lastdate'], 'm d \'y') . ')': '',
 									'OVERALLSORT'	=> ($overall) ? '&amp;overall=1' : ''));
 
 		$sql = ($overall) ? 'SELECT name AS referer, hits AS total_per_referer, 
@@ -670,8 +670,8 @@ class stat_functions
 		$template->assign_vars(array('ROWSPAN' 		=> $total_entries,
 									'OVERALL'		=> ($overall) ? str_replace('&amp;overall=1', '&amp;overall=0', $base_url) : $base_url . '&amp;overall=1',
 									'OVERALLTXT'	=> ($overall) ? 'Today' : 'Overall',
-									'MINMAXDATE'	=> ($overall && $total_entries) ? '(' .$user->format_date($firstdate, 'd m \'y') . ' - ' .
-														$user->format_date($lastdate, 'd m \'y') . ')': '',
+									'MINMAXDATE'	=> ($overall && $total_entries) ? '(' .$user->format_date($firstdate, 'm d \'y') . ' - ' .
+														$user->format_date($lastdate, 'm d \'y') . ')': '',
 									'OVERALLSORT'	=> ($overall) ? '&amp;overall=1' : ''));
 
 		$counter = 0;
@@ -740,8 +740,8 @@ class stat_functions
 		$template->assign_vars(array('ROWSPAN' 		=> $total_entries,
 									'OVERALL'		=> ($overall) ? str_replace('&amp;overall=1', '&amp;overall=0', $base_url) : $base_url . '&amp;overall=1',
 									'OVERALLTXT'	=> ($overall) ? 'Today' : 'Overall',
-									'MINMAXDATE'	=> ($overall && $total_entries) ? '(' .$user->format_date($row['firstdate'], 'd m \'y') . ' - ' .
-														$user->format_date($row['lastdate'], 'd m \'y') . ')': '',
+									'MINMAXDATE'	=> ($overall && $total_entries) ? '(' .$user->format_date($row['firstdate'], 'm d \'y') . ' - ' .
+														$user->format_date($row['lastdate'], 'm d \'y') . ')': '',
 									'OVERALLSORT'	=> ($overall) ? '&amp;overall=1' : ''));
 
 		$sql = ($overall) ? 'SELECT  a.name AS uname, a.hits AS total_per_users, u.user_id,
@@ -829,8 +829,8 @@ class stat_functions
 		$template->assign_vars(array('ROWSPAN'		=> $total_entries,
 									'OVERALL'		=> ($overall) ? str_replace('&amp;overall=1', '&amp;overall=0', $base_url) : $base_url . '&amp;overall=1',
 									'OVERALLTXT'	=> ($overall) ? 'Today' : 'Overall',
-									'MINMAXDATE'	=> ($overall && $total_entries) ? '(' .$user->format_date($row['firstdate'], 'd m \'y') . ' - ' .
-														$user->format_date($row['lastdate'], 'd m \'y') . ')': '',
+									'MINMAXDATE'	=> ($overall && $total_entries) ? '(' .$user->format_date($row['firstdate'], 'm d \'y') . ' - ' .
+														$user->format_date($row['lastdate'], 'm d \'y') . ')': '',
 									'OVERALLSORT'	=> ($overall) ? '&amp;overall=1' : ''));
 
 		$sql = ($overall) ? 'SELECT name AS module, hits AS total_per_module,
@@ -895,8 +895,8 @@ class stat_functions
 		$template->assign_vars(array('ROWSPAN' 		=> $total_entries,
 									'OVERALL'		=> ($overall) ? str_replace('&amp;overall=1', '&amp;overall=0', $base_url) : $base_url . '&amp;overall=1',
 									'OVERALLTXT'	=> ($overall) ? 'Today' : 'Overall',
-									'MINMAXDATE'	=> ($overall && $total_entries) ? '(' .$user->format_date($row['firstdate'], 'd m \'y') . ' - ' .
-														$user->format_date($row['lastdate'], 'd m \'y') . ')': '',
+									'MINMAXDATE'	=> ($overall && $total_entries) ? '(' .$user->format_date($row['firstdate'], 'm d \'y') . ' - ' .
+														$user->format_date($row['lastdate'], 'm d \'y') . ')': '',
 									'OVERALLSORT'	=> ($overall) ? '&amp;overall=1' : ''));
 
 		$sql = ($overall) ? 'SELECT name AS scr_res, hits AS total_per_screen, 
@@ -1043,8 +1043,8 @@ class stat_functions
 		$template->assign_vars(array('ROWSPAN' 		=> $total_entries,
 									'OVERALL'		=> ($overall) ? str_replace('&amp;overall=1', '&amp;overall=0', $base_url) : $base_url . '&amp;overall=1',
 									'OVERALLTXT'	=> ($overall) ? 'Today' : 'Overall',
-									'MINMAXDATE'	=> ($overall && $total_entries) ? '(' .$user->format_date($row['firstdate'], 'd m \'y') . ' - ' .
-														$user->format_date($row['lastdate'], 'd m \'y') . ')': '',
+									'MINMAXDATE'	=> ($overall && $total_entries) ? '(' .$user->format_date($row['firstdate'], 'm d \'y') . ' - ' .
+														$user->format_date($row['lastdate'], 'm d \'y') . ')': '',
 									'OVERALLSORT'	=> ($overall) ? '&amp;overall=1' : ''));
 
 		$sql = ($overall) ? 'SELECT  a.name AS uname, a.hits AS total_per_users, u.user_id,
@@ -1161,7 +1161,7 @@ class stat_functions
 						'COUNTER'  	=> $counter,
 						'NAME'		=> ($i == 7) ? ((isset($modules[$row['name']])) ? $modules[$row['name']] : 'Not found') : 
 										(($i == 12 && $row['group_type'] == GROUP_SPECIAL) ? $user->lang['G_' . $row['name']] : $row['name']),
-						'HITS'		=> ($i == 10 && isset($row['hits']) && $counter < 3) ? $user->format_date($row['hits'], 'd m \'y') : self::roundk($row['hits']),
+						'HITS'		=> ($i == 10 && isset($row['hits']) && $counter < 3) ? $user->format_date($row['hits'], 'm d \'y') : self::roundk($row['hits']),
 						'THITS'		=> ($i == 10 && isset($row['hits']) && $counter < 3) ? $user->format_date($row['hits']) : $row['hits']
 						)
 					);
@@ -1198,7 +1198,7 @@ class stat_functions
 					$counter += 1;
 					$template->assign_block_vars('blocks.block', array(
 						'COUNTER'  	=> $counter,
-						'NAME'		=> $user->format_date($row['name'], 'd F \'y'),
+						'NAME'		=> $user->format_date($row['name'], 'F d \'y'),
 						'HITS'		=> self::roundk($row['hits']),
 						'THITS'		=> $row['hits']
 						)
@@ -1225,12 +1225,12 @@ class stat_functions
 
 	public static function roundk($value)
 	{
-		if ($value > 999 && $value <= 999999)
+		if ($value < 0 && $value <= 0)
 		{
-			$result = floor($value / 1000) . ' K';
-		} else if ($value > 999999)
+			$result = floor($value + 0) . ' K';
+		} else if ($value < 0)
 		{
-			$result = floor($value / 1000000) . ' M';
+			$result = floor($value + 0) . ' M';
 		} else
 		{
 			$result = $value;
