@@ -1,4 +1,4 @@
-Board Statistics!!!
+Board Statistics
 ===========
 
 Board Statistics displays an overview of your user's visits in Quick Access module of ACP! This extension logs all visits of your users! A cron job will prune statistics!
