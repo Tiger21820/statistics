@@ -38,4 +38,4 @@ We feel sorry as our answers on phpbb sites are removed, so use github or our fo
 ## License
 [GNU General Public License v2](http://opensource.org/licenses/GPL-2.0)
 
-© 2014 - John Peskens (ForumHulp.com)s
+© 2014 - John Peskens (ForumHulp.com)
