@@ -15,7 +15,7 @@ You can install this extension on the latest copy of the develop branch ([phpBB 
 1. Copy the [entire contents of this repo](https://github.com/ForumHulp/statistics/archive/master.zip) to `FORUM_DIRECTORY/ext/forumhulp/statistics/`!
 2. Navigate in the ACP to `Customise -> Extension Management -> Manage extensions`!
 3. Click Board Statistics => `Enable`!
-cc
+
 ## Usage
 ### Board Statistics page
 To use, navigate in the ACP to `General -> Quick Acces -> Board Statistics`!
